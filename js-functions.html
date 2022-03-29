@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Asynchronous Javascript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/theme/sky.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/highlight/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/highlight/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/reveal.js"></script>
+    <style>
+      dd {
+        margin-bottom: 2rem;
+      }
+      .reveal pre code {
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+            ## Functions
+            ### Reusable code 
+            
+            ---
+
+            ### Terminology
+            <dl>
+              <dt>Function</dt>
+              <dd>A block of reusable code. It has its own scope and can be passed as a value.</dd>
+              <dt>Function Invocation</dt>
+              <dd>Calling or running a function, using trailing parentheses <code>()</code>.</dd>
+              <dt>Function Parameter</dt>
+              <dd>A named value that a function accepts as (eventual) input. Parameters are defined when the function is created.</dd>
+              <dt>Function Argument</dt>
+              <dd>The actual value passed to a function when it is invoked.</dd>
+            </dl>
+            ---
+
+            ## Defining Functions
+
+            ---
+
+            ### Function Statement
+            Also referred to as a function declaration, this is a classic syntax common to many languages.
+
+            ```js
+            function greet() {
+              console.log('Hi!');
+            }
+            ```
+
+            ---
+
+            ### Function Expression
+            Javascript also supports function expressions, which returns the function as a value which can then be assigned to a variable using the assignment operator `=`
+
+            ```js
+            const greet = function() {
+              console.log('Hi!');
+            };
+            ```
+
+            ---
+            
+            ### ES6 Fat Arrow Syntax
+            In June 2015, a new version of Javascript (ES6) was released and added a new "fat arrow" syntax for declaring functions. You will often see this syntax in documentation:
+
+            ```js
+            const greet = () => {
+              console.log('Hi!');
+            }
+            ```
+
+            ---
+
+            ### Key Takeaways
+            - Code inside a function does not execute at the time of declaration. You have to invoke a function later to run the code inside it.
+
+            ---
+
+            ## Invoking Functions
+            Once a function has been defined, it an be invoked/called/run. It's important to understand that the definition of a function (where the code inside the function is not run) is different than running a function.
+
+            ---
+
+            ### Functions Values vs Invocation
+            It's important to recognize when a function is being passed as a value or if it's being invoked.
+
+            ---
+
+            ### Functions as values
+            Javascript is one of the few languages that can treat functions as values. This leads to odd syntax, but recognizing the parentheses () helps demystify things.
+
+            If a named function is written without parentheses:
+
+            ```js
+            console.log(greet); // "function"
+            ```
+
+            it's being passed as a value just like any other value (i.e. a string, number, etc) would be.
+
+            ---
+
+            ### Invoked Function
+            If a named function includes trailing parentheses (`greet()`), then the function is being invoked (in other words, you are running or calling the function):
+
+            ```js
+            console.log(greet()); // "Hi!"
+            ```
+
+            ---
+
+            ## Parameters vs Arguments
+
+
+            ---
+
+            A function defined without parameters:
+
+            ```js
+            const greet = function() {
+              console.log("Hi!");
+            }
+            ```
+
+            Is invoked without arguments:
+
+            ```js
+            greet(); // Hi!
+            ```
+
+            ---
+
+            A function defined with a parameter:
+
+            ```js
+            const greet = function(name) {
+              console.log(`Hi, ${name}!`);
+            }
+            ```
+
+            Is invoked with one or more arguments (optionally):
+
+            ```js
+            greet('Tony'); // Hi, Tony!
+            ```
+
+            ---
+
+            A function declared using ES6 arrow syntax:
+
+            ```js
+            const greet = (name) => {
+              console.log(`Hi, ${name}!`);
+            }
+            ```
+
+            In ES6 allows for optional default values for a parameter (works with non-arrow functions too).
+
+            ```js
+            const greet = (name = 'Pal') => {
+              console.log(`Hi, ${name}!`);
+            }
+            ```
+
+            If name is not passed to the function, it will default to Pal:
+
+            ```js
+            greet(); // Hi, Pal!
+            ```
+            
+            ---
+
+            ### Key Takeaways
+            - Parameters and arguments are often confused. You pass _arguments_ to a function after you define the function's _parameters_.
+            - Javascript (by default) won't complain if you don't pass an argument when a parameter is defined.
+
+            ---
+            
+            ## Return Values
+            Functions can (optionally) return values when invoked if they contain the `return` keyword.
+
+            ---
+
+            If a function doesn't have a `return` keyword, it returns `undefined`:
+
+            ```js
+            const greet = function() {
+              // empty function, but code might exist
+            }
+            
+            const greeting = greet(); // undefined
+            ```
+
+            ---
+
+            Otherwise, they can return a specific value:
+
+            ```js
+            const greet = function() {
+              return 'Hi!';
+            }
+            
+            const greeting = greet(); // "Hi!"
+            ```
+
+            ---
+            
+            ### Key Takeaways
+            - Functions don't need to return a value to be useful. You can do many other things such as (for example) set/change global variables, access a database or fetch data from an endpoint.
+
+            ```js
+            const redirect = function() {
+              window.location('https://www.google.com');
+            }
+            ```
+
+            ---
+
+            ### Activity
+            See this Gist: [Refactor into functions](https://gist.github.com/acidtone/90355d3bdbcf770be4a642939f58cfd7)
+
+            </textarea>
+        </section>
+      </div>
+    </div>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        plugins: [ RevealMarkdown, RevealHighlight ]
+      });
+    </script>
+  </body>
+</html>
