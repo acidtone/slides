@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mongodb with Mongoose on Atlas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/theme/sky.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/highlight/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/highlight/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/reveal.js"></script>
+    <style>
+      :root {
+        --r-heading-text-transform: small-caps;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-variant: small-caps;
+      }
+      
+      dd {
+        margin-bottom: 2rem;
+      }
+      .reveal pre code {
+        padding: 1rem;
+      }
+      .code {
+        font-family:'Courier New', Courier, monospace;
+        font-size: 2.5rem;
+        white-space: nowrap;
+        color: grey;
+      }
+      .code strong {
+        color: black;
+      }
+
+      .code.no-bullet {
+        list-style: none;
+        padding-left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+            ## MongoDB with Mongoose
+            ### NoSQL Document Databases
+
+            ---
+            
+            ## Terminology
+            <dl>
+              <dt>NoSQL (Not-only SQL)</dt>
+              <dd>A blanket term for databases that aren't relational SQL databases (i.e. not MySQL).</dd>
+              <dt>Document Database</dt>
+              <dd>A type of NoSQL database that stores its data as documents in folders.</dd>
+              <dt>MongoDB</dt>
+              <dd>A NoSQL document database management system (DBMS).</dd>
+            </dl>
+            
+            ---
+
+            ## MongoDB Terminology
+            <dl>
+              <dt>Database</dt>
+              <dd>A collection of Collections.</dd>
+              <dt>Collection</dt>
+              <dd>A "folder" of Documents. A Collection is analogous to a table in relational databases.</dd>
+              <dt>Document</dt>
+              <dd>A file containing data in the form of JSON (technically BSON). A Document is analogous to a row in a relational database.</dd>
+            </dl>
+
+            ---
+
+            ### Why Mongoose?
+            Working with MongoDB is a little messy so we use the `mongoose` package to:
+            - use a simpler syntax;
+            - ensure the documents in a collection have the same structure;
+            - hide some gritty details like promises and asynchronous things.
+            
+            ---
+
+            #### Activity
+            ### Mongoose on Atlas
+            1. [Connecting to MongoDB Atlas](https://gist.github.com/acidtone/534b025d6212a003a8a8ec3030a4d4ae)
+            2. Follow the tutorial outlined in [Getting Started](https://mongoosejs.com/docs/) of the Mongoose Documentation.
+
+            ---
+
+            ---
+
+            ### Mongoose with Express
+            - [Importing Data using MongoDB Compass](https://gist.github.com/acidtone/d290d63873b07ffd871cafa39f917c1f)
+            - Example repo: [JS Definitions API](https://github.com/acidtone/definitions-atlas)
+            - CRUD Operations:
+                - [Creating Mongoose data in Express](https://gist.github.com/acidtone/c69a20727a1e11c58fcc9ff0503b1471)
+                - [Reading Mongoose documents in Express](https://gist.github.com/acidtone/de24abff567b3b2bf90b1af35bc3a23a)
+                - [Updating Mongoose documents in Express](https://gist.github.com/acidtone/c7da38b6783d05aa11cd02a1054cfc16)
+                - [Deleting Mongoose documents in Express](https://gist.github.com/acidtone/6435085cd7eb57f202ca5a7b1941e447)
+
+            ---
+
+            ## Extra Reading
+            - [What is NoSQL?](https://www.mongodb.com/nosql-explained)
+            - [NoSQL vs SQL Databases](https://www.mongodb.com/nosql-explained/nosql-vs-sql)
+
+            </textarea>
+        </section>
+      </div>
+    </div>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        plugins: [ RevealMarkdown, RevealHighlight ]
+      });
+    </script>
+  </body>
+</html>
