@@ -88,22 +88,97 @@
 
             ---
 
+            #### Considerations
+            ### MongoDB Connection String
+            The Database that you connect to is defined in the connection string:
+
+            <p class="code">mongodb+srv://tony:password123<br>@cluster0.some-gibberish.mongodb.net<br>/<strong>myFirstDatabase</strong>?retryWrites=true&w=majority</p>
+
             ---
 
+            #### Considerations
+            ### Collection Names
+
+            The Collection you connect to is defined when you compile the Schema:
+
+            ```js
+            const kittySchema = new mongoose.Schema({
+              name: String
+            });
+
+            const Kitten = mongoose.model('Kitten', kittySchema);
+            ```
+
+            `mongoose.model('Kitten', kittySchema)` means you'll be connecting to the `kittens` Collection. Mongoose figures out the plural version of your model name dynamically.
+
+            ---
+
+            ### API Security
+            - Any app that uses Mongoose will have a `.env` file in the root directory that will store your database login information.
+            - IMPORTANT: Add `.env` to your `.gitignore`. This will prevent you from pushing private credentials to a public repo.
+
+            ---
+
+            #### Sample Code
             ### Mongoose with Express
+            - [Express: Hello World!](https://gist.github.com/acidtone/8a188adf6e85a913f7f88c4f6cd53677)
             - [Importing Data using MongoDB Compass](https://gist.github.com/acidtone/d290d63873b07ffd871cafa39f917c1f)
-            - Example repo: [JS Definitions API](https://github.com/acidtone/definitions-atlas)
-            - CRUD Operations:
+            - Sample Code for Mongoose/Express CRUD:
                 - [Creating Mongoose data in Express](https://gist.github.com/acidtone/c69a20727a1e11c58fcc9ff0503b1471)
                 - [Reading Mongoose documents in Express](https://gist.github.com/acidtone/de24abff567b3b2bf90b1af35bc3a23a)
                 - [Updating Mongoose documents in Express](https://gist.github.com/acidtone/c7da38b6783d05aa11cd02a1054cfc16)
                 - [Deleting Mongoose documents in Express](https://gist.github.com/acidtone/6435085cd7eb57f202ca5a7b1941e447)
+            - Example repo: [JS Terminology API](https://github.com/acidtone/definitions-atlas)
 
+            ---
+
+            ### Async Considerations with Mongoose and Express
+            Since all our Mongoose code will be inside a function passed to our method handler, we place the `async` keyword in front of it.
+    
+            ```js
+            app.get('/api/cats', async (request, response) => {
+              response.send('This is asynchronous!');
+            })
+            ```
+            ---
+
+            Once your Mongoose code is inside an `async` function, you use the `await` keyword whenever you invoke a Mongoose method (because all Mongoose functions use Promises when you don't pass it a callback function as an optional parameter).
+
+            ```js
+            const catSchema = new mongoose.Schema({name: String})
+            const Cat = mongoose.model('Cat', catSchema);
+            
+            app.get('/api/cats', async (request, response) => {
+              const data = await Cat.find();
+              response.send(data);
+            })
+            ```
+            ---
+
+            Since `app.get()` invokes our callback function for us, it's difficult (impossible) to attach a `.catch()` method (for Promises) on the end of it. Instead, we use a `try`/`catch` block to handle any problems we might have with Atlas:
+
+            ```js
+            const catSchema = new mongoose.Schema({name: String})
+            const Cat = mongoose.model('Cat', catSchema);
+            
+            app.get('/api/cats', async (request, response) => {
+              try {
+                const data = await Cat.find();
+                response.send(data);
+              } catch(error){
+                console.log('Caught an error!', err)
+                response.send({error: 'Uh oh, there was an error'})
+              }
+            })
+            ```
             ---
 
             ## Extra Reading
             - [What is NoSQL?](https://www.mongodb.com/nosql-explained)
             - [NoSQL vs SQL Databases](https://www.mongodb.com/nosql-explained/nosql-vs-sql)
+            - [Using dotenv package to create environment variables](https://medium.com/@thejasonfile/using-dotenv-package-to-create-environment-variables-33da4ac4ea8f)
+            - [NodeJs CRUD Operations Using Mongoose and MongoDB Atlas](https://www.geeksforgeeks.org/node-js-crud-operations-using-mongoose-and-mongodb-atlas/)
+            - [CRUD Operations with Mongoose and MongoDB Atlas](https://www.digitalocean.com/community/tutorials/nodejs-crud-operations-mongoose-mongodb-atlas)
 
             </textarea>
         </section>
