@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Handling Errors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/theme/sky.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/highlight/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/highlight/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/reveal.js"></script>
+    <style>
+      :root {
+        --r-heading-text-transform: small-caps;
+      }
+      body .reveal .slides {
+        font-size: 36px;
+        text-align: left;
+      }
+
+      body .reveal .slides h1 {
+        font-size: 3em;
+      }
+
+      body .reveal .slides h2 {
+        font-size: 2em;
+      }
+
+      h1, h2 {
+        text-align: center;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-variant: small-caps;
+        text-align: center;
+      }
+      h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
+        font-variant: initial;
+      }
+      
+      dd {
+        margin-bottom: 2rem;
+      }
+
+      .reveal p > img {
+        display: block;
+        margin: auto;
+      }
+
+      .reveal pre code {
+        padding: 1rem;
+      }
+      .code {
+        font-family:'Courier New', Courier, monospace;
+        font-size: 2.5rem;
+        white-space: nowrap;
+        color: grey;
+      }
+      .code strong {
+        color: black;
+      }
+
+      .code.no-bullet {
+        list-style: none;
+        padding-left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+            ## Javascript
+            ### Handling Errors
+            See: <a href="https://www.jamesqquick.com/blog/15-common-beginner-javascript-mistakes/" target="_blank">15 Common Beginner JavaScript Mistakes</a> 
+
+            ---
+
+            ## Types of Errors 
+            - **Syntax errors**
+                - Errors in the rules of writing JS
+                - Easiest to debug: file and line usually provided
+                    ![Example of Uncaught reference error](assets/images/errors/var-undefined-firefox.png)
+            - **Run-time errors**
+                - Code technically correct but can't run
+                - Beginners can consider these the same as syntax errors
+            - **Logic errors**
+                - Code is broken but there are no errors
+                - Hardest to debug; sometimes takes hours
+
+            ---
+
+            ## Error Handling for Beginners
+
+            ---
+
+            ## Is it a syntax or logic error?
+            - Syntax errors are explicit and usually give you a filename and line number;
+            - If there's no indication of an error, it's probably a logic error.
+            
+            ---
+
+            ### Syntax Errors: 
+            - There will be an explicit error. For Javascript, check:
+                - The Console in devtools;
+                    ![Example of Uncaught reference error](assets/images/errors/var-undefined-chrome.png)
+                - The terminal that ran the application;
+                    ![Example of syntax error in terminal](assets/images/errors/terminal-error.png)
+            - Look for the filename and line number of the error;
+            - Google the error if you don't recognize it.
+
+            ---
+
+            ## Find errors early with "Squigglies"
+            VS Code is your friend. It will underline errors with red, yellow and blue "Squigglies":
+
+            ![Example of VS Code error squigglies](assets/images/errors/squiggly-underline.png)
+
+            Hover over the squiggly for hints on what's wrong:
+
+            ![Example of VS Code squiggly details](assets/images/errors/squiggly-details.png)
+
+            ---
+
+            ## Dealing with the error stack
+            An error will often cascade to multiple errors throughout an application:
+
+            ![Example of syntax error in terminal](assets/images/errors/error-stack.png)
+
+            - You can ignore most of the extra errors;
+            - Look for references to your filename;
+            - Depending on the situation, the real error will either be at the top or bottom of the stack
+
+            ---
+
+            ## Logic Errors
+            These can be very difficult to solve and you will often think that Javascript is broken (it's not, usually);
+            - Break the problem into smaller chunks;
+            - What are your theories?
+            - Eliminate your theories one at a time;
+            - When in doubt: find a 2nd pair of eyes;
+            - If no one is available: try [Rubber Duck Debugging](https://rubberduckdebugging.com/)
+            
+            ---
+
+            ## Grimes's most common logic error
+            - He's editing/running the wrong file.
+           </textarea>
+        </section>
+      </div>
+    </div>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        plugins: [ RevealMarkdown, RevealHighlight ]
+      });
+    </script>
+  </body>
+</html>
