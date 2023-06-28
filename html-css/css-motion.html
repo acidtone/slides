@@ -147,36 +147,6 @@
 
             ---
 
-            ## Tips and tricks
-            - Similar objects should animate in similar ways
-            - Entrance should inform exit
-                - Objects should leave the way they came in
-            - Match velocities
-
-            ---
-
-            ## Activity
-            ### What can you animate?
-            Using this [Starter Code](https://codepen.io/acidtone/pen/GRwRowz), try animating one or more of the following properties:
-            - `opacity`
-            - `width`
-            - `height`
-            - `position: absolute`
-                - `top`, `bottom`, `left`, `right`
-            - `transform: rotate()`
-
-            Or use your imagination!
-
-            ---
-
-            ## Live Code Challenge
-            ### Sliding Hamburger Menu
-            Using this [Starter Code](https://codepen.io/acidtone/pen/ZEmEWzK) try the following:
-            1. Have the menu slide in from the side with purpose and style
-            2. Replace the Menu button with this [animated hamburger icon](https://codepen.io/acidtone/pen/RwpEMxV)
-
-            ---
-
             ## CSS Transitions vs Animations
 
             ---
@@ -215,7 +185,7 @@
 
             ---
 
-            ## What can't be animated
+            ## What can't be animated?
             - `display` modes
             - `visibility`
             - `linear-gradient` and `radial-gradient`
@@ -230,6 +200,14 @@
               opacity: 0;
             }
             ```
+
+            ---
+
+            ## Performance Considerations
+            While the `transition` property is more performant than `animation`, there are performance considerations:
+            - Don't transition `all` properties (the default). Explicitly define which properties you'd like to transition.
+            - The `transform` and `opacity` properties are more optimized than other properties.
+            - Use `translate3D()` instead of `translateX()` or `translateY()` because they are graphics accelerated.
 
             ---
 
